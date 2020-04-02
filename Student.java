@@ -49,3 +49,33 @@ class Student {
 				.get();
 	}
 }
+
+class Faculty {
+	List<Student> students;
+	String name;
+
+	Faculty(String name) {
+		this.name = name;
+		students = new ArrayList<>();
+	}
+
+	public void addStudent(Student stud) {
+		students.add(stud);
+	}
+
+	public void removeStudent(Student stud) {
+		students.remove(stud);
+	}
+
+	public double averageGrade() {
+		return students.stream()
+				.mapToDouble(x -> x.getAverage())
+				.average().getAsDouble();
+	}
+
+	public double averageCredits() {
+		return students.stream()
+				.mapToInt(x -> x.ECTSCredits())
+				.average().getAsDouble();
+	}
+}
